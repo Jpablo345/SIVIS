@@ -14,7 +14,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans text-gray-900 antialiased bg-zinc-900">
+<body class="font-sans text-gray-900 antialiased bg-red-700">
 
     <header class="w-full bg-white shadow-md  border-zinc-200 sticky top-0 z-50">
         <div class="flex flex-col md:flex-row items-stretch min-h-[100px]">
