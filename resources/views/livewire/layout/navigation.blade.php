@@ -82,7 +82,7 @@ new class extends Component
                         </svg>
                     </button>
                     <div class="mt-2 space-y-2" x-show="openTipologia" x-transition>
-                        <div class="rounded-xl bg-white/10">
+                        <div class="rounded-xl">
                             <button type="button" class="flex w-full items-center justify-between px-3 py-2 text-xs font-semibold text-white/80" @click="openGeneracion = ! openGeneracion">
                                 <span>Generacion de nuevo conocimiento</span>
                                 <svg class="h-4 w-4 text-white/60 transition" :class="openGeneracion ? 'rotate-180' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -108,7 +108,7 @@ new class extends Component
                             </div>
                         </div>
 
-                        <div class="rounded-xl bg-white/10">
+                        <div class="rounded-xl">
                             <button type="button" class="flex w-full items-center justify-between px-3 py-2 text-xs font-semibold text-white/80" @click="openDesarrollo = ! openDesarrollo">
                                 <span>Desarrollo tecnologico e innovacion</span>
                                 <svg class="h-4 w-4 text-white/60 transition" :class="openDesarrollo ? 'rotate-180' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -121,7 +121,7 @@ new class extends Component
                                 </a>
                             </div>
                         </div>
-                        <div class="rounded-xl bg-white/10">
+                        <div class="rounded-xl">
                             <button type="button" class="flex w-full items-center justify-between px-3 py-2 text-xs font-semibold text-white/80" @click="openApropiacion = ! openApropiacion">
                                 <span>Apropiacion social del conocimiento</span>
                                 <svg class="h-4 w-4 text-white/60 transition" :class="openApropiacion ? 'rotate-180' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -137,7 +137,7 @@ new class extends Component
                                 </a>
                             </div>
                         </div>
-                        <div class="rounded-xl bg-white/10">
+                        <div class="rounded-xl">
                             <button type="button" class="flex w-full items-center justify-between px-3 py-2 text-xs font-semibold text-white/80" @click="openDivulgacion = ! openDivulgacion">
                                 <span>Divulgacion publica de la ciencia</span>
                                 <svg class="h-4 w-4 text-white/60 transition" :class="openDivulgacion ? 'rotate-180' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -150,7 +150,7 @@ new class extends Component
                                 </a>
                             </div>
                         </div>
-                        <div class="rounded-xl bg-white/10">
+                        <div class="rounded-xl">
                             <button type="button" class="flex w-full items-center justify-between px-3 py-2 text-xs font-semibold text-white/80" @click="openFormacion = ! openFormacion">
                                 <span>Formacion de recurso humano</span>
                                 <svg class="h-4 w-4 text-white/60 transition" :class="openFormacion ? 'rotate-180' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -227,7 +227,7 @@ new class extends Component
                     </svg>
                 </button>
                 <div class="mt-2 space-y-2" x-show="openTipologia" x-transition>
-                    <div class="rounded-xl bg-white/10">
+                    <div class="rounded-xl">
                         <button type="button" class="flex w-full items-center justify-between px-3 py-2 text-xs font-semibold text-white/80" @click="openGeneracion = ! openGeneracion">
                             <span>Generacion de nuevo conocimiento</span>
                             <svg class="h-4 w-4 text-white/60 transition" :class="openGeneracion ? 'rotate-180' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -253,7 +253,7 @@ new class extends Component
                         </div>
                     </div>
 
-                    <div class="rounded-xl bg-white/10">
+                    <div class="rounded-xl">
                         <button type="button" class="flex w-full items-center justify-between px-3 py-2 text-xs font-semibold text-white/80" @click="openDesarrollo = ! openDesarrollo">
                             <span>Desarrollo tecnologico e innovacion</span>
                             <svg class="h-4 w-4 text-white/60 transition" :class="openDesarrollo ? 'rotate-180' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -266,7 +266,7 @@ new class extends Component
                             </a>
                         </div>
                     </div>
-                    <div class="rounded-xl bg-white/10">
+                    <div class="rounded-xl">
                         <button type="button" class="flex w-full items-center justify-between px-3 py-2 text-xs font-semibold text-white/80" @click="openApropiacion = ! openApropiacion">
                             <span>Apropiacion social del conocimiento</span>
                             <svg class="h-4 w-4 text-white/60 transition" :class="openApropiacion ? 'rotate-180' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -282,7 +282,7 @@ new class extends Component
                             </a>
                         </div>
                     </div>
-                    <div class="rounded-xl bg-white/10">
+                    <div class="rounded-xl">
                         <button type="button" class="flex w-full items-center justify-between px-3 py-2 text-xs font-semibold text-white/80" @click="openDivulgacion = ! openDivulgacion">
                             <span>Divulgacion publica de la ciencia</span>
                             <svg class="h-4 w-4 text-white/60 transition" :class="openDivulgacion ? 'rotate-180' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -295,7 +295,7 @@ new class extends Component
                             </a>
                         </div>
                     </div>
-                    <div class="rounded-xl bg-white/10">
+                    <div class="rounded-xl">
                         <button type="button" class="flex w-full items-center justify-between px-3 py-2 text-xs font-semibold text-white/80" @click="openFormacion = ! openFormacion">
                             <span>Formacion de recurso humano</span>
                             <svg class="h-4 w-4 text-white/60 transition" :class="openFormacion ? 'rotate-180' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
