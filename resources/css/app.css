@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	:root {
+		--sivis-red: #9c1c1c;
+		--sivis-red-dark: #6f1414;
+		--sivis-cream: #f6efe9;
+		--sivis-rose: #f3d7d7;
+		--sivis-ink: #2b2323;
+	}
+
+	body {
+		font-family: "Space Grotesk", sans-serif;
+		background: var(--sivis-cream);
+		color: var(--sivis-ink);
+	}
+}
