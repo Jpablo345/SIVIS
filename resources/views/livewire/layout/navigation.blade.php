@@ -45,7 +45,7 @@ new class extends Component
     <!-- Mobile Drawer -->
     <div x-show="open" class="fixed inset-0 z-40 lg:hidden" x-cloak>
         <div class="absolute inset-0 bg-black/40" @click="open = false"></div>
-        <div class="relative h-full w-72 bg-[var(--sivis-red)] text-white">
+        <div class="relative flex h-full w-72 flex-col bg-[var(--sivis-red)] text-white">
             <div class="flex items-center justify-between px-5 py-5">
                 <div class="flex items-center gap-3">
                     <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 p-1">
@@ -63,7 +63,7 @@ new class extends Component
                 </button>
             </div>
 
-            <div class="h-[calc(100%-200px)] overflow-y-auto px-4 pb-6">
+            <div class="flex-1 overflow-y-auto px-4 pb-6">
                 <p class="px-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-white/60">Principal</p>
                 <div class="mt-2 space-y-1">
                     <a href="{{ route('dashboard') }}" class="{{ $navItem }} {{ request()->routeIs('dashboard') ? $navItemActive : $navItemInactive }}" wire:navigate>
@@ -179,7 +179,7 @@ new class extends Component
                 </div>
             </div>
 
-            <div class="border-t border-white/15 px-5 py-4">
+            <div class="mt-auto border-t border-white/15 px-5 py-4">
                 <div class="text-sm font-semibold" x-data="{{ json_encode(['name' => auth()->user()->name]) }}" x-text="name" x-on:profile-updated.window="name = $event.detail.name"></div>
                 <div class="text-xs text-white/70">{{ auth()->user()->email }}</div>
                 <div class="mt-3 flex gap-2">
@@ -195,7 +195,7 @@ new class extends Component
     </div>
 
     <!-- Desktop Sidebar -->
-    <aside class="hidden min-h-screen w-72 flex-col bg-[var(--sivis-red)] text-white lg:flex">
+    <aside class="hidden h-screen w-72 flex-col bg-[var(--sivis-red)] text-white lg:sticky lg:top-0 lg:flex lg:shrink-0">
         <div class="px-6 py-7">
             <div class="flex items-center gap-3">
                 <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 p-2">
