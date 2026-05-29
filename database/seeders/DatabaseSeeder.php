@@ -15,11 +15,30 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        if ((bool) env('SEED_PER_MODEL', false)) {
+            $this->call([
+                InstitutionSeeder::class,
+                PublicationTypeSeeder::class,
+                JournalSeeder::class,
+                BookTypeSeeder::class,
+                ResearchGroupSeeder::class,
+                ResearcherSeeder::class,
+                PublicationSeeder::class,
+                ArticleSeeder::class,
+                BookSeeder::class,
+                EventSeeder::class,
+                ResearcherPublicationSeeder::class,
+                ResearcherEventSeeder::class,
+                AudiResearcherSeeder::class,
+                AudiPublicationSeeder::class,
+            ]);
+        }
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        if ((bool) env('SEED_TEST_USER', false)) {
+            User::factory()->create([
+                'name' => 'Test User',
+                'email' => 'test@example.com',
+            ]);
+        }
     }
 }
