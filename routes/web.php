@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MailController;
 
 Route::redirect('/', '/login');
 
@@ -28,6 +29,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::view('instituciones', 'estructura.instituciones')->name('instituciones');
     });
 });
+
+Route::get('/send-email', [MailController::class, 'sendEmail']);
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
