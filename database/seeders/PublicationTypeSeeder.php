@@ -9,6 +9,6 @@ class PublicationTypeSeeder extends Seeder
 {
     public function run(): void
     {
-        PublicationType::factory(5)->create();
+        PublicationType::factory(2)->create();
     }
 }

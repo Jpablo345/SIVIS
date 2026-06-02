@@ -6,7 +6,5 @@
         </div>
     </x-slot>
 
-    <div class="rounded-2xl border border-white/60 bg-white/80 p-6 shadow-sm">
-        <p class="text-sm text-slate-600">Contenido pendiente. Aqui conectaremos con PostgreSQL.</p>
-    </div>
+   <livewire:tipologia.generacion.libros-investigacion />
 </x-app-layout>

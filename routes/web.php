@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
+use App\Livewire\Publicaciones\IndexPublicaciones;
+use App\Livewire\Publicaciones\TiposPublicacion;
+use App\Livewire\Publicaciones\Journals;
+use App\Livewire\Publicaciones\TiposLibro;
 
 Route::redirect('/', '/login');
 
@@ -27,6 +31,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::prefix('estructura')->name('estructura.')->group(function () {
         Route::view('grupos-investigacion', 'estructura.grupos-investigacion')->name('grupos');
         Route::view('instituciones', 'estructura.instituciones')->name('instituciones');
+    });
+
+    Route::prefix('publicaciones')->name('publicaciones.')->group(function () {
+        Route::get('/', IndexPublicaciones::class)->name('index');
+        Route::get('tipos', TiposPublicacion::class)->name('tipos');
+        Route::get('revistas', Journals::class)->name('journals');
+        Route::get('tipos-libro', TiposLibro::class)->name('tipos-libro');
     });
 });
 

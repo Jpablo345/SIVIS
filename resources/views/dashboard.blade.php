@@ -6,9 +6,10 @@
                 <h2 class="text-2xl font-semibold text-[#2b2323]">Produccion Cientifica 2024</h2>
             </div>
             <div class="flex flex-wrap gap-3">
-                <button class="rounded-full border border-[#9c1c1c]/30 px-4 py-2 text-xs font-semibold text-[#7a1515] hover:bg-[#f2d3d3]">
+                <a href="{{ route('publicaciones.index') }}" wire:navigate
+                    class="rounded-full border border-[#9c1c1c]/30 px-4 py-2 text-xs font-semibold text-[#7a1515] hover:bg-[#f2d3d3]">
                     + Registrar
-                </button>
+                </a>
                 <button class="rounded-full bg-[#9c1c1c] px-4 py-2 text-xs font-semibold text-white shadow-sm hover:bg-[#7a1515]">
                     Exportar
                 </button>
