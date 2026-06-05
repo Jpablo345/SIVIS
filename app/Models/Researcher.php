@@ -14,12 +14,12 @@ class Researcher extends Model
 
     protected $table = 'researcher';
     protected $primaryKey = 'researcher_id';
-    protected $keyType = 'string';
-    public $incrementing = false;
+    public $incrementing = true;       // ahora autoincremental
+    protected $keyType = 'int';
     public $timestamps = false;
 
     protected $fillable = [
-        'researcher_id',
+        'document',       // documento (cédula, pasaporte, etc.) — opcional
         'name_1',
         'name_2',
         'last_name_1',
@@ -50,5 +50,11 @@ class Researcher extends Model
     {
         return $this->belongsToMany(Event::class, 'researcher_event', 'researcher_id', 'event_id')
             ->withPivot('event_part_id', 'presentation_title', 'participation_type');
+    }
+
+    // Nombre completo como helper
+    public function getFullNameAttribute(): string
+    {
+        return trim("{$this->name_1} {$this->name_2} {$this->last_name_1} {$this->last_name_2}");
     }
 }

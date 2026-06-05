@@ -14,7 +14,7 @@ return new class extends Migration
             $table->string('presentation_title', 500)->nullable();
             $table->string('participation_type', 30)->nullable();
             $table->unsignedBigInteger('event_id');
-            $table->string('researcher_id', 10);
+            $table->unsignedBigInteger('researcher_id'); 
 
             $table->unique(['event_id', 'researcher_id']);
 

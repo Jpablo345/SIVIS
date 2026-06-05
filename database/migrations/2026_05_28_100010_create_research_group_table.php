@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('research_group', function (Blueprint $table) {
             $table->string('cod_minciencias', 50)->primary();
             $table->string('group_name', 255);
-            $table->string('group_classification', 10)->nullable();
+            $table->string('group_classification', 50)->nullable();
             $table->unsignedBigInteger('institution_id')->nullable();
 
             $table->foreign('institution_id')

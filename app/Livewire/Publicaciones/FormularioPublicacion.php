@@ -43,7 +43,7 @@ class FormularioPublicacion extends Component
     public ?int $articleTypeId = null;
     public ?int $bookTypeId = null;
 
-    public string $modal_researcher_id = '';
+    public ?string $modal_document = null;
     public string $modal_name_1 = '';
     public string $modal_last_name_1 = '';
     public ?string $modal_cod_minciencias = null;
@@ -160,7 +160,7 @@ class FormularioPublicacion extends Component
     {
         $journal = Journal::find($journalIssn);
 
-        if (! $journal) {
+        if (!$journal) {
             return;
         }
 
@@ -179,7 +179,7 @@ class FormularioPublicacion extends Component
 
         $researcher = Researcher::with('researchGroup')->find($researcherId);
 
-        if (! $researcher) {
+        if (!$researcher) {
             return;
         }
 
@@ -209,11 +209,11 @@ class FormularioPublicacion extends Component
     {
         $data = $this->validate($this->modalRules(), $this->modalMessages());
 
-        $researcherId = trim($data['modal_researcher_id']);
         $name1 = trim($data['modal_name_1']);
         $lastName1 = trim($data['modal_last_name_1']);
 
-        DB::transaction(function () use ($data, $researcherId, $name1, $lastName1) {
+        // Ejecutamos la transacción y hacemos que retorne el ID asignado por la BD
+        $newResearcherId = DB::transaction(function () use ($data, $name1, $lastName1) {
             $institutionId = $data['modal_institution_id'] ?? null;
 
             if ($data['modal_create_institution']) {
@@ -241,17 +241,21 @@ class FormularioPublicacion extends Component
                 $groupCode = $group->cod_minciencias;
             }
 
-            Researcher::firstOrCreate(
-                ['researcher_id' => $researcherId],
-                [
-                    'name_1' => $name1,
-                    'last_name_1' => $lastName1,
-                    'cod_minciencias' => $groupCode,
-                ]
-            );
+            // Insertamos el investigador y guardamos el documento en su nueva columna
+            $researcher = Researcher::create([
+                'document' => !empty($data['modal_document']) ? trim($data['modal_document']) : null,
+                'name_1' => $name1,
+                'last_name_1' => $lastName1,
+                'cod_minciencias' => $groupCode,
+            ]);
+
+            // Retornamos el ID autoincremental de la base de datos
+            return $researcher->researcher_id;
         });
 
-        $this->agregarAutor($researcherId);
+        // Agregamos el autor usando el ID numérico recién generado
+        $this->agregarAutor((string) $newResearcherId);
+
         $this->dispatch('close-modal', name: 'crear-investigador');
         $this->resetModalFields();
     }
@@ -367,13 +371,13 @@ class FormularioPublicacion extends Component
             'url' => ['nullable', 'string', 'max:300', 'url'],
             'type_id' => ['required', 'integer', 'exists:publication_type,type_id'],
             'journal_issn' => [
-                Rule::requiredIf(fn () => $this->isArticleType()),
+                Rule::requiredIf(fn() => $this->isArticleType()),
                 'nullable',
                 'string',
                 'exists:journal,journal_issn',
             ],
             'book_isbn' => [
-                Rule::requiredIf(fn () => $this->isBookType()),
+                Rule::requiredIf(fn() => $this->isBookType()),
                 'nullable',
                 'string',
                 'max:20',
@@ -381,7 +385,7 @@ class FormularioPublicacion extends Component
             'means_of_dissemination' => ['nullable', 'string', 'max:100'],
             'editorial' => ['nullable', 'string', 'max:255'],
             'book_type_id' => [
-                Rule::requiredIf(fn () => $this->isBookType()),
+                Rule::requiredIf(fn() => $this->isBookType()),
                 'nullable',
                 'integer',
                 'exists:book_type,book_type_id',
@@ -483,33 +487,33 @@ class FormularioPublicacion extends Component
     private function modalRules(): array
     {
         return [
-            'modal_researcher_id' => ['required', 'string', 'max:10'],
+            'modal_document' => ['nullable', 'string', 'max:20', 'unique:researcher,document'],
             'modal_name_1' => ['required', 'string', 'max:50'],
             'modal_last_name_1' => ['required', 'string', 'max:50'],
             'modal_cod_minciencias' => [
-                Rule::requiredIf(fn () => ! $this->modal_create_group),
+                Rule::requiredIf(fn() => !$this->modal_create_group),
                 'nullable',
                 'string',
                 'max:50',
             ],
             'modal_group_code' => [
-                Rule::requiredIf(fn () => $this->modal_create_group),
+                Rule::requiredIf(fn() => $this->modal_create_group),
                 'nullable',
                 'string',
                 'max:50',
             ],
             'modal_group_name' => [
-                Rule::requiredIf(fn () => $this->modal_create_group),
+                Rule::requiredIf(fn() => $this->modal_create_group),
                 'nullable',
                 'string',
                 'max:255',
             ],
-            'modal_group_classification' => ['nullable', 'string', 'max:10'],
+            'modal_group_classification' => ['nullable', 'string', 'max:50'],
             'modal_institution_id' => ['nullable', 'integer'],
             'modal_create_group' => ['boolean'],
             'modal_create_institution' => ['boolean'],
             'modal_institution_name' => [
-                Rule::requiredIf(fn () => $this->modal_create_institution),
+                Rule::requiredIf(fn() => $this->modal_create_institution),
                 'nullable',
                 'string',
                 'max:255',
@@ -524,7 +528,7 @@ class FormularioPublicacion extends Component
     private function modalMessages(): array
     {
         return [
-            'modal_researcher_id.required' => 'El documento es obligatorio.',
+            'modal_document.unique' => 'Este número de documento ya está registrado.',
             'modal_name_1.required' => 'El primer nombre es obligatorio.',
             'modal_last_name_1.required' => 'El primer apellido es obligatorio.',
             'modal_cod_minciencias.required' => 'Selecciona un grupo existente.',
@@ -536,7 +540,7 @@ class FormularioPublicacion extends Component
 
     private function resetModalFields(): void
     {
-        $this->modal_researcher_id = '';
+        $this->modal_document = null;
         $this->modal_name_1 = '';
         $this->modal_last_name_1 = '';
         $this->modal_cod_minciencias = null;

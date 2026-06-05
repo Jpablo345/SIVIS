@@ -11,7 +11,7 @@ return new class extends Migration
     {
         Schema::create('researcher_publication', function (Blueprint $table) {
             $table->unsignedBigInteger('publication_id');
-            $table->string('researcher_id', 10);
+            $table->unsignedBigInteger('researcher_id'); 
             $table->unsignedInteger('author_order')->nullable();
 
             $table->primary(['publication_id', 'researcher_id']);

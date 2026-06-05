@@ -21,17 +21,21 @@
 
         <div class="mt-6 grid gap-4 md:grid-cols-2">
             <div class="md:col-span-2">
-                <x-input-label for="title" :value="'Titulo'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                <x-input-label for="title" :value="'Titulo'"
+                    class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
                 <x-text-input id="title" wire:model.defer="title" type="text" class="mt-2 block w-full" />
                 <x-input-error :messages="$errors->get('title')" class="mt-2" />
             </div>
             <div>
-                <x-input-label for="publication_year" :value="'Ano'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                <x-text-input id="publication_year" wire:model.defer="publication_year" type="text" class="mt-2 block w-full" />
+                <x-input-label for="publication_year" :value="'Ano'"
+                    class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                <x-text-input id="publication_year" wire:model.defer="publication_year" type="text"
+                    class="mt-2 block w-full" />
                 <x-input-error :messages="$errors->get('publication_year')" class="mt-2" />
             </div>
             <div>
-                <x-input-label for="scope" :value="'Ambito'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                <x-input-label for="scope" :value="'Ambito'"
+                    class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
                 <select id="scope" wire:model.defer="scope"
                     class="mt-2 block w-full rounded-md border-red-200 bg-white text-zinc-900 shadow-sm transition-colors focus:border-red-600 focus:ring-red-600">
                     <option value="">Sin definir</option>
@@ -41,12 +45,15 @@
                 <x-input-error :messages="$errors->get('scope')" class="mt-2" />
             </div>
             <div>
-                <x-input-label for="country_publication" :value="'Pais'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                <x-text-input id="country_publication" wire:model.defer="country_publication" type="text" class="mt-2 block w-full" />
+                <x-input-label for="country_publication" :value="'Pais'"
+                    class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                <x-text-input id="country_publication" wire:model.defer="country_publication" type="text"
+                    class="mt-2 block w-full" />
                 <x-input-error :messages="$errors->get('country_publication')" class="mt-2" />
             </div>
             <div>
-                <x-input-label for="type_id" :value="'Tipo'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                <x-input-label for="type_id" :value="'Tipo'"
+                    class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
                 <select id="type_id" wire:model.live="type_id"
                     class="mt-2 block w-full rounded-md border-red-200 bg-white text-zinc-900 shadow-sm transition-colors focus:border-red-600 focus:ring-red-600">
                     <option value="">Selecciona un tipo</option>
@@ -57,8 +64,10 @@
                 <x-input-error :messages="$errors->get('type_id')" class="mt-2" />
             </div>
             <div>
-                <x-input-label for="url" :value="'URL'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                <x-text-input id="url" wire:model.defer="url" type="url" class="mt-2 block w-full" placeholder="https://" />
+                <x-input-label for="url" :value="'URL'"
+                    class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                <x-text-input id="url" wire:model.defer="url" type="url" class="mt-2 block w-full"
+                    placeholder="https://" />
                 <x-input-error :messages="$errors->get('url')" class="mt-2" />
             </div>
         </div>
@@ -71,7 +80,8 @@
             </div>
 
             <div class="mt-4">
-                <x-input-label for="journal_search" :value="'Revista (ISSN o nombre)'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                <x-input-label for="journal_search" :value="'Revista (ISSN o nombre)'"
+                    class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
                 <x-text-input id="journal_search" wire:model.live="journalSearch" type="text" class="mt-2 block w-full" />
                 <x-input-error :messages="$errors->get('journal_issn')" class="mt-2" />
 
@@ -98,12 +108,14 @@
 
             <div class="mt-4 grid gap-4 md:grid-cols-2">
                 <div>
-                    <x-input-label for="book_isbn" :value="'ISBN'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <x-input-label for="book_isbn" :value="'ISBN'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
                     <x-text-input id="book_isbn" wire:model.defer="book_isbn" type="text" class="mt-2 block w-full" />
                     <x-input-error :messages="$errors->get('book_isbn')" class="mt-2" />
                 </div>
                 <div>
-                    <x-input-label for="book_type_id" :value="'Tipo de libro'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <x-input-label for="book_type_id" :value="'Tipo de libro'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
                     <select id="book_type_id" wire:model.defer="book_type_id"
                         class="mt-2 block w-full rounded-md border-red-200 bg-white text-zinc-900 shadow-sm transition-colors focus:border-red-600 focus:ring-red-600">
                         <option value="">Selecciona un tipo</option>
@@ -114,12 +126,15 @@
                     <x-input-error :messages="$errors->get('book_type_id')" class="mt-2" />
                 </div>
                 <div>
-                    <x-input-label for="means_of_dissemination" :value="'Medio de difusion'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                    <x-text-input id="means_of_dissemination" wire:model.defer="means_of_dissemination" type="text" class="mt-2 block w-full" />
+                    <x-input-label for="means_of_dissemination" :value="'Medio de difusion'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <x-text-input id="means_of_dissemination" wire:model.defer="means_of_dissemination" type="text"
+                        class="mt-2 block w-full" />
                     <x-input-error :messages="$errors->get('means_of_dissemination')" class="mt-2" />
                 </div>
                 <div>
-                    <x-input-label for="editorial" :value="'Editorial'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <x-input-label for="editorial" :value="'Editorial'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
                     <x-text-input id="editorial" wire:model.defer="editorial" type="text" class="mt-2 block w-full" />
                     <x-input-error :messages="$errors->get('editorial')" class="mt-2" />
                 </div>
@@ -140,7 +155,8 @@
         </div>
 
         <div class="mt-4">
-            <x-text-input wire:model.live="authorSearch" type="search" class="w-full" placeholder="Buscar investigador" />
+            <x-text-input wire:model.live="authorSearch" type="search" class="w-full"
+                placeholder="Buscar investigador" />
         </div>
 
         @if ($authorResults)
@@ -162,7 +178,8 @@
 
         <div class="mt-4 space-y-2">
             @forelse ($selectedAuthors as $index => $author)
-                <div class="flex items-center justify-between rounded-xl border border-[#f0dede] bg-white px-4 py-3 text-sm">
+                <div
+                    class="flex items-center justify-between rounded-xl border border-[#f0dede] bg-white px-4 py-3 text-sm">
                     <div>
                         <div class="font-semibold text-[#2b2323]">{{ $index + 1 }}. {{ $author['name'] }}</div>
                         <div class="text-xs text-slate-500">{{ $author['group'] ?? 'Sin grupo' }}</div>
@@ -173,7 +190,8 @@
                     </button>
                 </div>
             @empty
-                <div class="rounded-xl border border-dashed border-[#f0dede] bg-white/60 px-4 py-6 text-center text-sm text-slate-500">
+                <div
+                    class="rounded-xl border border-dashed border-[#f0dede] bg-white/60 px-4 py-6 text-center text-sm text-slate-500">
                     No has agregado autores todavia.
                 </div>
             @endforelse
@@ -190,18 +208,23 @@
 
             <div class="mt-4 grid gap-4 md:grid-cols-2">
                 <div>
-                    <x-input-label for="modal_researcher_id" :value="'Documento'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                    <x-text-input id="modal_researcher_id" wire:model="modal_researcher_id" type="text" class="mt-2 block w-full" />
-                    <x-input-error :messages="$errors->get('modal_researcher_id')" class="mt-2" />
+                    <x-input-label for="modal_document" :value="'Documento (opcional)'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <x-text-input id="modal_document" wire:model="modal_document" type="text" class="mt-2 block w-full"
+                        placeholder="Cedula, pasaporte..." />
+                    <x-input-error :messages="$errors->get('modal_document')" class="mt-2" />
                 </div>
                 <div>
-                    <x-input-label for="modal_name_1" :value="'Primer nombre'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <x-input-label for="modal_name_1" :value="'Primer nombre'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
                     <x-text-input id="modal_name_1" wire:model="modal_name_1" type="text" class="mt-2 block w-full" />
                     <x-input-error :messages="$errors->get('modal_name_1')" class="mt-2" />
                 </div>
                 <div>
-                    <x-input-label for="modal_last_name_1" :value="'Primer apellido'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                    <x-text-input id="modal_last_name_1" wire:model="modal_last_name_1" type="text" class="mt-2 block w-full" />
+                    <x-input-label for="modal_last_name_1" :value="'Primer apellido'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <x-text-input id="modal_last_name_1" wire:model="modal_last_name_1" type="text"
+                        class="mt-2 block w-full" />
                     <x-input-error :messages="$errors->get('modal_last_name_1')" class="mt-2" />
                 </div>
                 <div class="flex items-center gap-2 pt-6">
@@ -211,10 +234,11 @@
                 </div>
             </div>
 
-            @if (! $modal_create_group)
+            @if (!$modal_create_group)
                 <div class="mt-4">
-                    <x-input-label for="modal_cod_minciencias" :value="'Grupo existente'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                    <select id="modal_cod_minciencias" wire:model.defer="modal_cod_minciencias"
+                    <x-input-label for="modal_cod_minciencias" :value="'Grupo existente'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <select id="modal_cod_minciencias" wire:model="modal_cod_minciencias"
                         class="mt-2 block w-full rounded-md border-red-200 bg-white text-zinc-900 shadow-sm transition-colors focus:border-red-600 focus:ring-red-600">
                         <option value="">Selecciona un grupo</option>
                         @foreach ($groups as $group)
@@ -228,17 +252,23 @@
             @if ($modal_create_group)
                 <div class="mt-4 grid gap-4 md:grid-cols-2">
                     <div>
-                        <x-input-label for="modal_group_code" :value="'Codigo Minciencias'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                        <x-text-input id="modal_group_code" wire:model.defer="modal_group_code" type="text" class="mt-2 block w-full" />
+                        <x-input-label for="modal_group_code" :value="'Codigo Minciencias'"
+                            class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                        <x-text-input id="modal_group_code" wire:model="modal_group_code" type="text"
+                            class="mt-2 block w-full" />
                         <x-input-error :messages="$errors->get('modal_group_code')" class="mt-2" />
                     </div>
                     <div>
-                        <x-input-label for="modal_group_classification" :value="'Clasificacion'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                        <x-text-input id="modal_group_classification" wire:model.defer="modal_group_classification" type="text" class="mt-2 block w-full" />
+                        <x-input-label for="modal_group_classification" :value="'Clasificacion'"
+                            class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                        <x-text-input id="modal_group_classification" wire:model="modal_group_classification"
+                            type="text" class="mt-2 block w-full" />
                     </div>
                     <div class="md:col-span-2">
-                        <x-input-label for="modal_group_name" :value="'Nombre del grupo'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                        <x-text-input id="modal_group_name" wire:model.defer="modal_group_name" type="text" class="mt-2 block w-full" />
+                        <x-input-label for="modal_group_name" :value="'Nombre del grupo'"
+                            class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                        <x-text-input id="modal_group_name" wire:model="modal_group_name" type="text"
+                            class="mt-2 block w-full" />
                         <x-input-error :messages="$errors->get('modal_group_name')" class="mt-2" />
                     </div>
                 </div>
@@ -249,9 +279,10 @@
                     <label for="modal_create_institution" class="text-sm text-slate-600">Crear institucion nueva</label>
                 </div>
 
-                @if (! $modal_create_institution)
+                @if (!$modal_create_institution)
                     <div class="mt-4">
-                        <x-input-label for="modal_institution_id" :value="'Institucion existente'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                        <x-input-label for="modal_institution_id" :value="'Institucion existente'"
+                            class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
                         <select id="modal_institution_id" wire:model.defer="modal_institution_id"
                             class="mt-2 block w-full rounded-md border-red-200 bg-white text-zinc-900 shadow-sm transition-colors focus:border-red-600 focus:ring-red-600">
                             <option value="">Sin asignar</option>
@@ -265,25 +296,35 @@
                 @if ($modal_create_institution)
                     <div class="mt-4 grid gap-4 md:grid-cols-2">
                         <div class="md:col-span-2">
-                            <x-input-label for="modal_institution_name" :value="'Nombre de institucion'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                            <x-text-input id="modal_institution_name" wire:model.defer="modal_institution_name" type="text" class="mt-2 block w-full" />
+                            <x-input-label for="modal_institution_name" :value="'Nombre de institucion'"
+                                class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                            <x-text-input id="modal_institution_name" wire:model.defer="modal_institution_name" type="text"
+                                class="mt-2 block w-full" />
                             <x-input-error :messages="$errors->get('modal_institution_name')" class="mt-2" />
                         </div>
                         <div>
-                            <x-input-label for="modal_institution_type" :value="'Tipo'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                            <x-text-input id="modal_institution_type" wire:model.defer="modal_institution_type" type="text" class="mt-2 block w-full" />
+                            <x-input-label for="modal_institution_type" :value="'Tipo'"
+                                class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                            <x-text-input id="modal_institution_type" wire:model.defer="modal_institution_type" type="text"
+                                class="mt-2 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="modal_institution_country" :value="'Pais'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                            <x-text-input id="modal_institution_country" wire:model.defer="modal_institution_country" type="text" class="mt-2 block w-full" />
+                            <x-input-label for="modal_institution_country" :value="'Pais'"
+                                class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                            <x-text-input id="modal_institution_country" wire:model.defer="modal_institution_country"
+                                type="text" class="mt-2 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="modal_institution_city" :value="'Ciudad'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                            <x-text-input id="modal_institution_city" wire:model.defer="modal_institution_city" type="text" class="mt-2 block w-full" />
+                            <x-input-label for="modal_institution_city" :value="'Ciudad'"
+                                class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                            <x-text-input id="modal_institution_city" wire:model.defer="modal_institution_city" type="text"
+                                class="mt-2 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="modal_institution_website" :value="'Sitio web'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                            <x-text-input id="modal_institution_website" wire:model.defer="modal_institution_website" type="url" class="mt-2 block w-full" placeholder="https://" />
+                            <x-input-label for="modal_institution_website" :value="'Sitio web'"
+                                class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                            <x-text-input id="modal_institution_website" wire:model.defer="modal_institution_website" type="url"
+                                class="mt-2 block w-full" placeholder="https://" />
                         </div>
                     </div>
                 @endif
