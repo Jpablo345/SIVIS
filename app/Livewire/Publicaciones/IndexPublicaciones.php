@@ -5,6 +5,9 @@ namespace App\Livewire\Publicaciones;
 use App\Models\Publication;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\PublicationsExport;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class IndexPublicaciones extends Component
 {
@@ -52,7 +55,11 @@ class IndexPublicaciones extends Component
         $this->resetPage();
     }
 
-    public function getPublicationsProperty()
+    /**
+     * Propiedad computada base encargada de procesar el filtro de búsqueda.
+     * Compartida tanto por la tabla web como por los motores de exportación.
+     */
+    public function getPublicationsQueryProperty()
     {
         $term = trim($this->search);
 
@@ -73,8 +80,35 @@ class IndexPublicaciones extends Component
                         });
                 });
             })
-            ->orderByDesc('publication_id')
-            ->paginate(10);
+            ->orderByDesc('publication_id');
+    }
+
+    /**
+     * Entrega las publicaciones paginadas para el renderizado de la vista de Livewire
+     */
+    public function getPublicationsProperty()
+    {
+        return $this->getPublicationsQueryProperty()->paginate(10);
+    }
+
+    // Exportación a Excel usando el paquete Maatwebsite
+    public function exportExcel()
+    {
+        $publications = $this->getPublicationsQueryProperty()->get();
+        return Excel::download(new PublicationsExport($publications), 'publicaciones_filtradas.xlsx');
+    }
+
+    // Exportación a PDF usando el paquete DomPDF
+    public function exportPdf()
+    {
+        $publications = $this->getPublicationsQueryProperty()->get();
+        
+        $pdf = Pdf::loadView('exports.publications-pdf', compact('publications'))
+                  ->setPaper('a4', 'landscape'); // Formato horizontal para tablas anchas
+
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf->output();
+        }, 'publicaciones_filtradas.pdf');
     }
 
     public function render()
