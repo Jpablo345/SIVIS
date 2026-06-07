@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('article', function (Blueprint $table) {
             $table->unsignedBigInteger('publication_id')->primary();
             $table->string('journal_issn', 20);
+            $table->string('doi', 200)->nullable()->unique();
 
             $table->foreign('publication_id')
                 ->references('publication_id')

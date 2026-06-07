@@ -28,6 +28,8 @@ class FormularioPublicacion extends Component
     public ?int $type_id = null;
 
     public ?string $journal_issn = null;
+
+    public ?string $doi = null;
     public string $journalSearch = '';
     public array $journalResults = [];
 
@@ -286,7 +288,7 @@ class FormularioPublicacion extends Component
                 Book::where('publication_id', $publicationId)->delete();
                 Article::updateOrCreate(
                     ['publication_id' => $publicationId],
-                    ['journal_issn' => $data['journal_issn']]
+                    ['journal_issn' => $data['journal_issn'], 'doi' => $data['doi'] ?? null]
                 );
             } elseif ($this->isBookType()) {
                 Article::where('publication_id', $publicationId)->delete();
@@ -334,6 +336,7 @@ class FormularioPublicacion extends Component
 
         if ($publication->article) {
             $this->journal_issn = $publication->article->journal_issn;
+            $this->doi = $publication->article->doi;
             $this->journalSearch = $publication->article->journal
                 ? $publication->article->journal->journal_name . ' (' . $publication->article->journal->journal_issn . ')'
                 : $publication->article->journal_issn;
@@ -376,6 +379,12 @@ class FormularioPublicacion extends Component
                 'string',
                 'exists:journal,journal_issn',
             ],
+            'doi' => [ // agregar aquí
+                'nullable',
+                'string',
+                'max:200',
+                Rule::unique('article', 'doi')->ignore($this->publicationId, 'publication_id'),
+            ],
             'book_isbn' => [
                 Rule::requiredIf(fn() => $this->isBookType()),
                 'nullable',
@@ -403,6 +412,7 @@ class FormularioPublicacion extends Component
             'type_id.exists' => 'El tipo de publicacion no es valido.',
             'journal_issn.required' => 'Selecciona la revista del articulo.',
             'journal_issn.exists' => 'La revista seleccionada no existe.',
+            'doi.unique' => 'Este DOI ya está registrado en otra publicación.',
             'book_isbn.required' => 'El ISBN es obligatorio para libros.',
             'book_type_id.required' => 'Selecciona el tipo de libro.',
             'book_type_id.exists' => 'El tipo de libro no es valido.',
@@ -447,6 +457,7 @@ class FormularioPublicacion extends Component
         $this->journal_issn = null;
         $this->journalSearch = '';
         $this->journalResults = [];
+        $this->doi = null;
     }
 
     private function resetBookFields(): void

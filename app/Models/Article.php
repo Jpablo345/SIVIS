@@ -18,6 +18,7 @@ class Article extends Model
     protected $fillable = [
         'publication_id',
         'journal_issn',
+        'doi',
     ];
 
     public function publication(): BelongsTo
