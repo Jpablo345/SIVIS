@@ -6,6 +6,7 @@ use App\Livewire\Publicaciones\IndexPublicaciones;
 use App\Livewire\Publicaciones\TiposPublicacion;
 use App\Livewire\Publicaciones\Journals;
 use App\Livewire\Publicaciones\TiposLibro;
+use App\Http\Controllers\GoogleAuthController;
 
 Route::redirect('/', '/login');
 
@@ -46,5 +47,9 @@ Route::get('/send-email', [MailController::class, 'sendEmail']);
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+    // Google OAuth
+Route::get('/auth/google', [GoogleAuthController::class, 'redirect'])->name('google.redirect');
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback'])->name('google.callback');
+
 
 require __DIR__.'/auth.php';
