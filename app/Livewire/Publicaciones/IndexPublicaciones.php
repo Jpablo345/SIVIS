@@ -64,7 +64,12 @@ class IndexPublicaciones extends Component
         $term = trim($this->search);
 
         return Publication::query()
-            ->with(['type', 'researchers'])
+            ->with([
+                'type',
+                'researchers.researchGroup.institution',
+                'article.journal',
+                'book.bookType',
+            ])
             ->when($term !== '', function ($query) use ($term) {
                 $like = '%' . $term . '%';
                 $query->where(function ($inner) use ($like) {
