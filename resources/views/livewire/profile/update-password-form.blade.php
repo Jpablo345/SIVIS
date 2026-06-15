@@ -38,41 +38,73 @@ new class extends Component
     }
 }; ?>
 
-<section>
-    <header>
-        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-            {{ __('Update Password') }}
+<section class="bg-white p-6 rounded-lg shadow-sm border border-gray-200 mt-6">
+    <header class="border-b border-gray-100 pb-4">
+        <h2 class="text-xl font-bold text-gray-800">
+            {{ __('Actualizar Contraseña') }}
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __('Ensure your account is using a long, random password to stay secure.') }}
+        <p class="mt-1 text-sm text-gray-500">
+            {{ __('Asegúrate de que tu cuenta utilice una contraseña larga y aleatoria para mantenerla segura.') }}
         </p>
     </header>
 
     <form wire:submit="updatePassword" class="mt-6 space-y-6">
         <div>
-            <x-input-label for="update_password_current_password" :value="__('Current Password')" />
-            <x-text-input wire:model="current_password" id="update_password_current_password" name="current_password" type="password" class="mt-1 block w-full" autocomplete="current-password" />
-            <x-input-error :messages="$errors->get('current_password')" class="mt-2" />
+            <label for="update_password_current_password" class="block text-sm font-semibold text-gray-700 mb-1">
+                {{ __('Contraseña Actual') }}
+            </label>
+            <input 
+                wire:model="current_password" 
+                id="update_password_current_password" 
+                name="current_password" 
+                type="password" 
+                class="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 text-gray-800 shadow-sm focus:border-red-600 focus:ring focus:ring-red-200 focus:ring-opacity-50 p-2.5" 
+                autocomplete="current-password" 
+            />
+            <x-input-error :messages="$errors->get('current_password')" class="mt-2 text-red-600 text-sm" />
         </div>
 
         <div>
-            <x-input-label for="update_password_password" :value="__('New Password')" />
-            <x-text-input wire:model="password" id="update_password_password" name="password" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+            <label for="update_password_password" class="block text-sm font-semibold text-gray-700 mb-1">
+                {{ __('Nueva Contraseña') }}
+            </label>
+            <input 
+                wire:model="password" 
+                id="update_password_password" 
+                name="password" 
+                type="password" 
+                class="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 text-gray-800 shadow-sm focus:border-red-600 focus:ring focus:ring-red-200 focus:ring-opacity-50 p-2.5" 
+                autocomplete="new-password" 
+            />
+            <x-input-error :messages="$errors->get('password')" class="mt-2 text-red-600 text-sm" />
         </div>
 
         <div>
-            <x-input-label for="update_password_password_confirmation" :value="__('Confirm Password')" />
-            <x-text-input wire:model="password_confirmation" id="update_password_password_confirmation" name="password_confirmation" type="password" class="mt-1 block w-full" autocomplete="new-password" />
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+            <label for="update_password_password_confirmation" class="block text-sm font-semibold text-gray-700 mb-1">
+                {{ __('Confirmar Contraseña') }}
+            </label>
+            <input 
+                wire:model="password_confirmation" 
+                id="update_password_password_confirmation" 
+                name="password_confirmation" 
+                type="password" 
+                class="mt-1 block w-full rounded-md border-gray-300 bg-gray-50 text-gray-800 shadow-sm focus:border-red-600 focus:ring focus:ring-red-200 focus:ring-opacity-50 p-2.5" 
+                autocomplete="new-password" 
+            />
+            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-red-600 text-sm" />
         </div>
 
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+        <div class="flex items-center gap-4 pt-2">
+            <button 
+                type="submit" 
+                class="px-5 py-2.5 bg-red-700 hover:bg-red-800 text-white font-medium text-sm rounded-md transition-colors shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+            >
+                {{ __('Actualizar Contraseña') }}
+            </button>
 
-            <x-action-message class="me-3" on="password-updated">
-                {{ __('Saved.') }}
+            <x-action-message class="text-sm text-green-600 font-medium" on="password-updated">
+                {{ __('¡Contraseña actualizada!') }}
             </x-action-message>
         </div>
     </form>
