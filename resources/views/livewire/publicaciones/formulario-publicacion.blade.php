@@ -353,11 +353,31 @@
                                 class="mt-2 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="modal_institution_country" :value="'Pais'"
+                            <x-input-label for="country_publication" :value="'Pais'"
                                 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                            <x-text-input id="modal_institution_country" wire:model.defer="modal_institution_country"
-                                type="text" class="mt-2 block w-full" />
+
+                            @php
+                                //Llama al archivo config/paises.php
+                                $paises = config('paises');
+                                if ($paises)
+                                    ksort($paises); // Ordena alfabéticamente
+                            @endphp
+
+                            <x-text-input id="country_publication" list="lista-paises" wire:model="country_publication"
+                                type="text" class="mt-2 block w-full" placeholder="Escribe para buscar un país..."
+                                autocomplete="off" />
+
+                            <datalist id="lista-paises">
+                                @if($paises)
+                                    @foreach($paises as $nombre => $codigo)
+                                        <option value="{{ $nombre }}"></option>
+                                    @endforeach
+                                @endif
+                            </datalist>
+
+                            <x-input-error :messages="$errors->get('country_publication')" class="mt-2" />
                         </div>
+                        
                         <div>
                             <x-input-label for="modal_institution_city" :value="'Ciudad'"
                                 class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />

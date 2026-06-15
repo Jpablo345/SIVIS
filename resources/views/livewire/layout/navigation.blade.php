@@ -193,11 +193,6 @@ new class extends Component {
                                     wire:navigate>
                                     Ver registros
                                 </a>
-                                <a href="{{ route('tipologia.apropiacion') }}"
-                                    class="{{ $navSubItem }} {{ request()->routeIs('tipologia.apropiacion') ? $navItemActive : $navItemInactive }}"
-                                    wire:navigate>
-                                    Eventos
-                                </a>
                             </div>
                         </div>
                         <div class="rounded-xl">
@@ -216,7 +211,7 @@ new class extends Component {
                                 <a href="{{ route('tipologia.divulgacion') }}"
                                     class="{{ $navSubItem }} {{ request()->routeIs('tipologia.divulgacion') ? $navItemActive : $navItemInactive }}"
                                     wire:navigate>
-                                    Ver registros
+                                    Eventos
                                 </a>
                             </div>
                         </div>
@@ -417,11 +412,6 @@ new class extends Component {
                                 wire:navigate>
                                 Ver registros
                             </a>
-                            <a href="{{ route('tipologia.apropiacion') }}"
-                                class="{{ $navSubItem }} {{ request()->routeIs('tipologia.apropiacion') ? $navItemActive : $navItemInactive }}"
-                                wire:navigate>
-                                Eventos
-                            </a>
                         </div>
                     </div>
                     <div class="rounded-xl">
@@ -439,7 +429,7 @@ new class extends Component {
                             <a href="{{ route('tipologia.divulgacion') }}"
                                 class="{{ $navSubItem }} {{ request()->routeIs('tipologia.divulgacion') ? $navItemActive : $navItemInactive }}"
                                 wire:navigate>
-                                Ver registros
+                                Eventos
                             </a>
                         </div>
                     </div>

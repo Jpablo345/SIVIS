@@ -40,7 +40,8 @@
 
             <div class="mt-6 grid gap-4 md:grid-cols-2">
                 <div>
-                    <x-input-label for="journal_issn" :value="'ISSN'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <x-input-label for="journal_issn" :value="'ISSN'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
                     <x-text-input id="journal_issn" wire:model="journal_issn" type="text"
                         class="mt-2 block w-full {{ $editingId ? 'bg-slate-100 cursor-not-allowed' : '' }}"
                         :disabled="(bool) $editingId" />
@@ -50,15 +51,26 @@
                     @endif
                 </div>
                 <div>
-                    <x-input-label for="journal_name" :value="'Nombre de la revista'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <x-input-label for="journal_name" :value="'Nombre de la revista'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
                     <x-text-input id="journal_name" wire:model="journal_name" type="text" class="mt-2 block w-full" />
                     <x-input-error :messages="$errors->get('journal_name')" class="mt-2" />
                 </div>
                 <div class="md:col-span-2">
-                    <x-input-label for="category" :value="'Categoria (Q1, Q2, etc.)'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                    <x-text-input id="category" wire:model="category" type="text" class="mt-2 block w-full" />
-                    <x-input-error :messages="$errors->get('category')" class="mt-2" />
+                    <x-input-label for="category" :value="'Categoria (Q1, Q2, etc.)'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <select id="category" wire:model="category"
+                        class="mt-2 block w-full rounded-md border-red-200 bg-white text-zinc-900 shadow-sm transition-colors focus:border-red-600 focus:ring-red-600">
+                        <option value="">Sin clasificacion</option>
+                        <option value="Q1">Q1</option>
+                        <option value="Q2">Q2</option>
+                        <option value="Q3">Q3</option>
+                        <option value="Q4">Q4</option>
+                        <option value="Q5">Q5</option>
+                        <x-input-error :messages="$errors->get('category')" class="mt-2" />
+                    </select>
                 </div>
+                
             </div>
         </div>
 
@@ -67,16 +79,20 @@
             <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                     <h3 class="text-lg font-semibold text-[#2b2323]">Revistas registradas</h3>
-                    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#9c1c1c]">{{ $this->journals->total() }} registros</p>
+                    <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[#9c1c1c]">
+                        {{ $this->journals->total() }} registros
+                    </p>
                 </div>
                 <div class="w-full sm:w-72">
-                    <x-text-input wire:model.live="search" type="search" placeholder="Buscar por nombre o ISSN" class="w-full" />
+                    <x-text-input wire:model.live="search" type="search" placeholder="Buscar por nombre o ISSN"
+                        class="w-full" />
                 </div>
             </div>
 
             <div class="mt-6 overflow-hidden rounded-2xl border border-[#f0dede]">
                 <table class="min-w-full divide-y divide-[#f0dede] text-sm">
-                    <thead class="bg-[#fff7f7] text-left text-xs font-semibold uppercase tracking-[0.2em] text-[#7a1515]">
+                    <thead
+                        class="bg-[#fff7f7] text-left text-xs font-semibold uppercase tracking-[0.2em] text-[#7a1515]">
                         <tr>
                             <th class="px-4 py-3">ISSN</th>
                             <th class="px-4 py-3">Nombre</th>

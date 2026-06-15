@@ -13,11 +13,13 @@ Route::redirect('/', '/login');
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('investigadores', 'investigadores')->name('investigadores');
+    
 
     Route::prefix('tipologia')->name('tipologia.')->group(function () {
         Route::prefix('generacion')->name('generacion.')->group(function () {
             Route::view('articulos-cientificos', 'tipologia.generacion.articulos-cientificos')->name('articulos');
             Route::view('libros-investigacion', 'tipologia.generacion.libros-investigacion')->name('libros');
+            Route::view('eventos', 'tipologia.generacion.eventos')->name('eventos');
             Route::view('capitulos-libro', 'tipologia.generacion.capitulos-libro')->name('capitulos');
             Route::view('trabajos-eventos', 'tipologia.generacion.trabajos-eventos')->name('trabajos');
             Route::view('otras-publicaciones', 'tipologia.generacion.otras-publicaciones')->name('otras');
