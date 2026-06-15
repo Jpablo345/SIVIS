@@ -18,8 +18,6 @@
     </x-slot>
 
     <div class="relative">
-        <div class="pointer-events-none absolute -left-16 -top-12 h-40 w-40 rounded-full bg-[#f2d3d3] blur-2xl"></div>
-        <div class="pointer-events-none absolute right-10 top-32 h-56 w-56 rounded-full bg-[#f7e2d2] blur-3xl"></div>
 
         <div class="relative grid gap-6">
             <section class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
