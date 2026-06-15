@@ -21,6 +21,7 @@
                 <livewire:layout.navigation />
 
                 <div class="flex min-h-screen flex-1 flex-col">
+                    <!-- Page Heading -->
                     @if (isset($header))
                         <header class="sticky top-0 z-30 border-b border-[#e7cfcf] bg-[var(--sivis-cream)]/80 backdrop-blur">
                             <div class="mx-auto w-full max-w-6xl px-6 py-4 lg:px-10">

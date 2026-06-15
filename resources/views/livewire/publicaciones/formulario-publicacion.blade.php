@@ -47,8 +47,25 @@
             <div>
                 <x-input-label for="country_publication" :value="'Pais'"
                     class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                <x-text-input id="country_publication" wire:model.defer="country_publication" type="text"
-                    class="mt-2 block w-full" />
+
+                @php
+                    //Llama al archivo config/paises.php
+                    $paises = config('paises');
+                    if ($paises)
+                        ksort($paises); // Ordena alfabéticamente
+                @endphp
+
+                <x-text-input id="country_publication" list="lista-paises" wire:model="country_publication" type="text"
+                    class="mt-2 block w-full" placeholder="Escribe para buscar un país..." autocomplete="off" />
+
+                <datalist id="lista-paises">
+                    @if($paises)
+                        @foreach($paises as $nombre => $codigo)
+                            <option value="{{ $nombre }}"></option>
+                        @endforeach
+                    @endif
+                </datalist>
+
                 <x-input-error :messages="$errors->get('country_publication')" class="mt-2" />
             </div>
             <div>
@@ -128,8 +145,12 @@
                 <div>
                     <x-input-label for="means_of_dissemination" :value="'Medio de difusion'"
                         class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                    <x-text-input id="means_of_dissemination" wire:model.defer="means_of_dissemination" type="text"
-                        class="mt-2 block w-full" />
+                    <select id="means_of_dissemination" wire:model="means_of_dissemination"
+                        class="mt-2 block w-full rounded-md border-red-200 bg-white text-zinc-900 shadow-sm transition-colors focus:border-red-600 focus:ring-red-600">
+                        <option value="">Selecciona un medio</option>
+                        <option value="Electronico">Electronico</option>
+                        <option value="Papel">Papel</option>
+                    </select>
                     <x-input-error :messages="$errors->get('means_of_dissemination')" class="mt-2" />
                 </div>
                 <div>
@@ -261,8 +282,8 @@
                     <div>
                         <x-input-label for="modal_group_classification" :value="'Clasificacion'"
                             class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                        <x-text-input id="modal_group_classification" wire:model="modal_group_classification"
-                            type="text" class="mt-2 block w-full" />
+                        <x-text-input id="modal_group_classification" wire:model="modal_group_classification" type="text"
+                            class="mt-2 block w-full" />
                     </div>
                     <div class="md:col-span-2">
                         <x-input-label for="modal_group_name" :value="'Nombre del grupo'"
