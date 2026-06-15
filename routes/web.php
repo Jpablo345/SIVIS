@@ -11,7 +11,6 @@ use App\Http\Controllers\GoogleAuthController;
 Route::redirect('/', '/login');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('investigadores', 'investigadores')->name('investigadores');
     
 
