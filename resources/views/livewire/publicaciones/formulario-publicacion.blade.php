@@ -242,14 +242,28 @@
                     <x-input-error :messages="$errors->get('modal_name_1')" class="mt-2" />
                 </div>
                 <div>
+                    <x-input-label for="modal_name_2" :value="'Segundo nombre'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <x-text-input id="modal_name_2" wire:model="modal_name_2" type="text" class="mt-2 block w-full" />
+                    <x-input-error :messages="$errors->get('modal_name_2')" class="mt-2" />
+                </div>
+                <div>
                     <x-input-label for="modal_last_name_1" :value="'Primer apellido'"
                         class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
                     <x-text-input id="modal_last_name_1" wire:model="modal_last_name_1" type="text"
                         class="mt-2 block w-full" />
                     <x-input-error :messages="$errors->get('modal_last_name_1')" class="mt-2" />
                 </div>
+                <div>
+                    <x-input-label for="modal_last_name_2" :value="'Segundo apellido'"
+                        class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
+                    <x-text-input id="modal_last_name_2" wire:model="modal_last_name_2" type="text"
+                        class="mt-2 block w-full" />
+                    <x-input-error :messages="$errors->get('modal_last_name_2')" class="mt-2" />
+                </div>
+
                 <div class="flex items-center gap-2 pt-6">
-                    <input id="modal_create_group" type="checkbox" wire:model="modal_create_group"
+                    <input id="modal_create_group" type="checkbox" wire:model.live="modal_create_group"
                         class="rounded border-red-200 text-red-600 focus:ring-red-500" />
                     <label for="modal_create_group" class="text-sm text-slate-600">Crear grupo nuevo</label>
                 </div>
@@ -280,11 +294,20 @@
                         <x-input-error :messages="$errors->get('modal_group_code')" class="mt-2" />
                     </div>
                     <div>
-                        <x-input-label for="modal_group_classification" :value="'Clasificacion'"
+                        <x-input-label for="group_classification" :value="'Clasificacion'"
                             class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                        <x-text-input id="modal_group_classification" wire:model="modal_group_classification" type="text"
-                            class="mt-2 block w-full" />
+                        <select id="group_classification" wire:model="group_classification"
+                            class="mt-2 block w-full rounded-md border-red-200 bg-white text-zinc-900 shadow-sm transition-colors focus:border-red-600 focus:ring-red-600">
+                            <option value="">Sin clasificacion</option>
+                            <option value="Categoría A1">Categoría A1</option>
+                            <option value="Categoría A">Categoría A</option>
+                            <option value="Categoría B">Categoría B</option>
+                            <option value="Categoría C">Categoría C</option>
+                            <option value="Categoría D">Categoría D</option>
+                            <option value="Institucional">Institucional</option>
+                        </select>
                     </div>
+
                     <div class="md:col-span-2">
                         <x-input-label for="modal_group_name" :value="'Nombre del grupo'"
                             class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
@@ -295,11 +318,11 @@
                 </div>
 
                 <div class="mt-4 flex items-center gap-2">
-                    <input id="modal_create_institution" type="checkbox" wire:model="modal_create_institution"
+                    <input id="modal_create_institution" type="checkbox" wire:model.live="modal_create_institution"
                         class="rounded border-red-200 text-red-600 focus:ring-red-500" />
-                    <label for="modal_create_institution" class="text-sm text-slate-600">Crear institucion nueva</label>
+                    <label for="modal_create_institution" class="text-sm text-slate-600">Crear institución
+                        nueva</label>
                 </div>
-
                 @if (!$modal_create_institution)
                     <div class="mt-4">
                         <x-input-label for="modal_institution_id" :value="'Institucion existente'"

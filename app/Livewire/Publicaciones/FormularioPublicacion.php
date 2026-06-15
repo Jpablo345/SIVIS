@@ -47,7 +47,9 @@ class FormularioPublicacion extends Component
 
     public ?string $modal_document = null;
     public string $modal_name_1 = '';
+    public string $modal_name_2 = '';
     public string $modal_last_name_1 = '';
+    public string $modal_last_name_2 = '';
     public ?string $modal_cod_minciencias = null;
 
     public bool $modal_create_group = false;
@@ -500,7 +502,9 @@ class FormularioPublicacion extends Component
         return [
             'modal_document' => ['nullable', 'string', 'max:20', 'unique:researcher,document'],
             'modal_name_1' => ['required', 'string', 'max:50'],
+            'modal_name_2' => ['nullable', 'string', 'max:50'],
             'modal_last_name_1' => ['required', 'string', 'max:50'],
+            'modal_last_name_2' => ['nullable', 'string', 'max:50'],
             'modal_cod_minciencias' => [
                 Rule::requiredIf(fn() => !$this->modal_create_group),
                 'nullable',
@@ -541,7 +545,11 @@ class FormularioPublicacion extends Component
         return [
             'modal_document.unique' => 'Este número de documento ya está registrado.',
             'modal_name_1.required' => 'El primer nombre es obligatorio.',
+            'modal_name_2.string' => 'El segundo nombre debe ser una cadena de texto.',
+            'modal_name_2.max' => 'El segundo nombre debe tener como máximo 50 caracteres.',
             'modal_last_name_1.required' => 'El primer apellido es obligatorio.',
+            'modal_last_name_2.string' => 'El segundo apellido debe ser una cadena de texto.',
+            'modal_last_name_2.max' => 'El segundo apellido debe tener como máximo 50 caracteres.',
             'modal_cod_minciencias.required' => 'Selecciona un grupo existente.',
             'modal_group_code.required' => 'El codigo del grupo es obligatorio.',
             'modal_group_name.required' => 'El nombre del grupo es obligatorio.',
@@ -553,7 +561,9 @@ class FormularioPublicacion extends Component
     {
         $this->modal_document = null;
         $this->modal_name_1 = '';
+        $this->modal_name_2 = '';
         $this->modal_last_name_1 = '';
+        $this->modal_last_name_2 = '';
         $this->modal_cod_minciencias = null;
         $this->modal_create_group = false;
         $this->modal_group_code = '';
