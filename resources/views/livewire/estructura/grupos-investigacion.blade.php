@@ -142,7 +142,16 @@ new class extends Component {
             </div>
             <div>
                 <x-input-label for="group_classification" :value="'Clasificacion'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />
-                <x-text-input id="group_classification" wire:model.defer="group_classification" type="text" class="mt-2 block w-full" />
+                <select id="group_classification" wire:model="group_classification"
+                    class="mt-2 block w-full rounded-md border-red-200 bg-white text-zinc-900 shadow-sm transition-colors focus:border-red-600 focus:ring-red-600">
+                    <option value="">Sin clasificacion</option>
+                    <option value="Categoría A1">Categoría A1</option>
+                    <option value="Categoría A">Categoría A</option>
+                    <option value="Categoría B">Categoría B</option>
+                    <option value="Categoría C">Categoría C</option>
+                    <option value="Categoría D">Categoría D</option>
+                    <option value="Institucional">Institucional</option>
+                </select>
             </div>
             <div class="md:col-span-2">
                 <x-input-label for="group_name" :value="'Nombre del grupo'" class="text-xs font-semibold uppercase tracking-[0.2em] text-slate-600" />

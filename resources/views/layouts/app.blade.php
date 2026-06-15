@@ -20,7 +20,7 @@
             <div class="flex min-h-screen">
                 <livewire:layout.navigation />
 
-                <div class="flex min-h-screen flex-1 flex-col">
+                <div class="flex min-h-screen flex-1 flex-col min-w-0">
                     <!-- Page Heading -->
                     @if (isset($header))
                         <header class="sticky top-0 z-30 border-b border-[#e7cfcf] bg-[var(--sivis-cream)]/80 backdrop-blur">
