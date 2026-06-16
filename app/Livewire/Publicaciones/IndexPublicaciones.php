@@ -125,19 +125,19 @@ class IndexPublicaciones extends Component
                 'article.journal',
                 'book.bookType',
             ])
-            // Filtro de búsqueda por texto
+            // Filtro de búsqueda por texto (insensible a mayúsculas)
             ->when($term !== '', function ($query) use ($term) {
-                $like = '%' . $term . '%';
+                $like = '%' . strtolower($term) . '%';
                 $query->where(function ($inner) use ($like) {
-                    $inner->where('title', 'ilike', $like)
-                        ->orWhere('publication_year', 'ilike', $like)
-                        ->orWhere('scope', 'ilike', $like)
+                    $inner->whereRaw('LOWER(title) LIKE ?', [$like])
+                        ->orWhereRaw('LOWER(publication_year) LIKE ?', [$like])
+                        ->orWhereRaw('LOWER(scope) LIKE ?', [$like])
                         ->orWhereHas('type', function ($type) use ($like) {
-                            $type->where('type_name', 'ilike', $like);
+                            $type->whereRaw('LOWER(type_name) LIKE ?', [$like]);
                         })
                         ->orWhereHas('researchers', function ($researcher) use ($like) {
-                            $researcher->where('name_1', 'ilike', $like)
-                                ->orWhere('last_name_1', 'ilike', $like);
+                            $researcher->whereRaw('LOWER(name_1) LIKE ?', [$like])
+                                ->orWhereRaw('LOWER(last_name_1) LIKE ?', [$like]);
                         });
                 });
             })
@@ -145,26 +145,24 @@ class IndexPublicaciones extends Component
             ->when($year !== '', function ($query) use ($year) {
                 $query->where('publication_year', $year);
             })
-            // Filtro por tipo de publicación
+            // Filtro por tipo de publicación - CORREGIDO
             ->when($type !== '', function ($query) use ($type) {
-                $query->whereHas('type', function ($q) use ($type) {
-                    $q->where('publication_type_id', $type);
-                });
+                $query->where('publication_type_id', $type);
             })
-            // Filtro por grupo de investigación
+            // Filtro por grupo de investigación - CORREGIDO
             ->when($group !== '', function ($query) use ($group) {
                 $query->whereHas('researchers.researchGroup', function ($q) use ($group) {
                     $q->where('research_group_id', $group);
                 });
             })
-            // Filtro por autor
+            // Filtro por autor (insensible a mayúsculas)
             ->when($author !== '', function ($query) use ($author) {
-                $like = '%' . $author . '%';
+                $like = '%' . strtolower($author) . '%';
                 $query->whereHas('researchers', function ($q) use ($like) {
-                    $q->where('name_1', 'ilike', $like)
-                        ->orWhere('name_2', 'ilike', $like)
-                        ->orWhere('last_name_1', 'ilike', $like)
-                        ->orWhere('last_name_2', 'ilike', $like);
+                    $q->whereRaw('LOWER(name_1) LIKE ?', [$like])
+                        ->orWhereRaw('LOWER(name_2) LIKE ?', [$like])
+                        ->orWhereRaw('LOWER(last_name_1) LIKE ?', [$like])
+                        ->orWhereRaw('LOWER(last_name_2) LIKE ?', [$like]);
                 });
             })
             ->orderByDesc('publication_id');

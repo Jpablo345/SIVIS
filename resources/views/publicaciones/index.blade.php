@@ -73,7 +73,7 @@
                     </div>
                 </div>
 
-                <!-- Filtros desplegables estilo imagen -->
+                <!-- Filtros desplegables -->
                 <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
                     <!-- Búsqueda por texto -->
                     <div class="relative">
@@ -164,7 +164,7 @@
                         @endif
                         @if($filterType)
                             @php
-                                $typeName = $this->types->firstWhere('publication_type_id', $filterType)?->type_name ?? $filterType;
+                                $typeName = $this->types->firstWhere('publication_type_id', (int)$filterType)?->type_name ?? $filterType;
                             @endphp
                             <span class="rounded-full bg-[#fff7f7] px-3 py-1 border border-[#f0dede]">
                                 Tipo: {{ $typeName }}
@@ -172,7 +172,7 @@
                         @endif
                         @if($filterGroup)
                             @php
-                                $groupName = $this->groups->firstWhere('research_group_id', $filterGroup)?->group_name ?? $filterGroup;
+                                $groupName = $this->groups->firstWhere('research_group_id', (int)$filterGroup)?->group_name ?? $filterGroup;
                             @endphp
                             <span class="rounded-full bg-[#fff7f7] px-3 py-1 border border-[#f0dede]">
                                 Grupo: {{ $groupName }}
